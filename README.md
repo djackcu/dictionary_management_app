@@ -1,5 +1,5 @@
 # Dictionary Management Onsite
-This is a project to manage dictionaries that are used to clean or normalise values in dataset columns.
+This is a project to manage dictionaries that are used to clean or normalize values in dataset columns.
 ## Table of content
 * [Descriptions](#description)
 * [Getting started](#getting-started)
@@ -15,14 +15,14 @@ Open the terminal and run following command
 
 **Development mode(without service worker)** 
 - `cd dictionary_management`
-- `npm install`
-- `npm start`
+- `yarn install`
+- `yarn start`
 - The application will open in your browser at the address: `localhost:3000`
 
 **Production build(with service worker)** 
 - `cd dictionary_management`
-- `npm install`
-- `npm run build`
+- `yarn install`
+- `yarn run build`
 - `serve -s build`
 - The application will open in your browser at the address: `localhost:5000`
 
