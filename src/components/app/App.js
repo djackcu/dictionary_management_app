@@ -1,31 +1,19 @@
-import React,{useState, useEffect} from 'react';
-import * as dictionaryApi from '../../api/dictionaryApi'
+import React from 'react';
+import useApp from './useApp';
+import DictionaryList from '../dictionaryList/dictionaryList';
 import './App.css';
 
 function App() {
-
-  const [dictionaries, setDictionaries] = useState([]);
-
-  useEffect(() => {
-    dictionaryApi.initialStore();
-    dictionaryApi.setDictionary('color');
-    const dictionariesValues =  dictionaryApi.getDictionaries();
-    setDictionaries([...dictionariesValues]);
-    return () => {
-      localStorage.clear();
-    };
-  },[]);
-  
-
+  const{dictionaries} = useApp();
   return (
-    <div className="App">
-      <header className="App-header">
-        <div>
-          {dictionaries.map((dict) => (
-            <div key={dict}>{dict}</div>
-          ))}
-        </div>
+    <div className="app">
+      <header className="app-header">
+        Dictionary Management
       </header>
+      <div className="app-body">
+      <DictionaryList dictionaries={dictionaries} />
+      </div>
+        
     </div>
   );
 }

@@ -1,22 +1,70 @@
-.App {
-  text-align: center;
+/* https://colorhunt.co/palette/157118 */
+/* https://colorhunt.co/palette/159233 */
+
+:root {
+  --first-dark-color: #23374d;
+  --second-dark-color: #1089ff;
+  --first-light-color: #e5e5e5;
+  --second-light-color: #eeeeee;
+  --third-dark-color: #4b8e8d;
+  --fourth-dark-color:#396362;
+  --third-light-color: #ffe7d1;
+  --fourth-light-color: #f6c89f;
+  --fifth-light-color: #f58b54;
 }
 
-.App-logo {
-  height: 40vmin;
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.app-header {
+  background-color: var(--first-dark-color);
+  min-height: 20vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: white;
+  color: var(--first-light-color);
+  text-align: center;
 }
 
-.App-link {
-  color: #09d3ac;
+.app-body {
+  background-color: var(--first-light-color);
+  min-height: calc(80vh - 20px);
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  justify-content: left;
+  font-size: calc(10px + 2vmin);
+  color: var(--first-dark-color);
+  padding: 10px 10vw 10px 10vw;
+}
+
+.dictionary-list{
+  border:1px solid var(--fourth-dark-color);
+}
+.dictionary-element{
+  padding-left: 20px;
+  background-color: var(--fourth-light-color);
+  color: var(--fourth-dark-color)
+}
+.dictionary-element:nth-child(even){
+  background-color: var(--third-light-color);
+  color: var(--fourth-dark-color);
+}
+
+.dictionary-element:hover{
+  background-color: var(--fifth-light-color);
+  color: var(--first-dark-color);
+}
+
+.dictionary-form {
+  display:flex;
+  justify-content: flex-end;
+  }
+
+.dictionary-form-add_button{
+  font-size: calc(10px + 2vmin);
+  color: var(--first-dark-color);
+}
+.dictionary-form-add_text{
+  font-size: calc(10px + 2vmin);
+  color: var(--first-dark-color);
 }
