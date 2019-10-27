@@ -1,0 +1,2 @@
+export const LOAD_DICTIONARIES = 'LOAD_DICTIONARIES';
+
