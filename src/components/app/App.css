@@ -43,7 +43,23 @@
 .dictionary-element{
   padding-left: 20px;
   background-color: var(--fourth-light-color);
-  color: var(--fourth-dark-color)
+  color: var(--fourth-dark-color);
+  display: flex;
+}
+
+.dictionary-element_name{
+  width: 20%;
+}
+.dictionary-element_description{
+  width: 60%;
+}
+
+.dictionary-element_btn_validate{
+  width: 15%;
+}
+
+.dictionary-element_btn_delete{
+  width: 5%;
 }
 .dictionary-element:nth-child(even){
   background-color: var(--third-light-color);
