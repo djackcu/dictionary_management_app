@@ -1,6 +1,6 @@
 import React,{useState} from 'react'
 
-function DictionaryForm({addDictionary}) {
+function DictionariesForm({addDictionary}) {
     const [dictionary, setDictionary] = useState('');
     const handlerAddDictionary = () => {
         addDictionary(dictionary);
@@ -20,4 +20,4 @@ function DictionaryForm({addDictionary}) {
     )
 }
 
-export default DictionaryForm
+export default DictionariesForm

@@ -13,9 +13,11 @@ const useDictionaries = () => {
         };
     },[dictionaries]);
     const addDictionary = (dictionary) => dispatch({ type: types.ADD_DICTIONARY, dictionary });
+    const deleteDictionary = (dictionary) => dispatch({ type: types.DELETE_DICTIONARY, dictionary });
+    
     
 
-    return {dictionaries, addDictionary}
+    return {dictionaries, addDictionary, deleteDictionary}
 }
 
 export default useDictionaries

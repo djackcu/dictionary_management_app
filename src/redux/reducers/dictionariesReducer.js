@@ -5,6 +5,10 @@ export default function dictionariesReducer(state = initialState.dictionaries, a
   switch (action.type) {
     case types.ADD_DICTIONARY:
       return [...state,action.dictionary];
+    case types.DELETE_DICTIONARY:
+      return state.filter((dict) => {
+        return dict!==action.dictionary;
+      })
     default:
       return state;
   }

@@ -61,6 +61,14 @@
 .dictionary-element_btn_delete{
   width: 5%;
 }
+.dictionary-element_btn_validate,.dictionary-element_btn_delete{
+  text-align: center;
+  cursor: pointer;
+}
+
+.dictionary-element_btn_validate:hover,.dictionary-element_btn_delete:hover{
+  background-color: var(--second-light-color);
+}
 .dictionary-element:nth-child(even){
   background-color: var(--third-light-color);
   color: var(--fourth-dark-color);
