@@ -4,7 +4,7 @@ import DictionaryList from '../dictionaryList/dictionaryList';
 import './App.css';
 
 function App() {
-  const{dictionaries} = useApp();
+  const{dictionaries} = useApp(['color']);
   return (
     <div className="app">
       <header className="app-header">
