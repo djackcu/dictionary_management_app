@@ -1,3 +1,3 @@
 export default {
-	dictionaries            : []
+	dictionaries            : ['color', 'size']
 };

@@ -1,5 +1,5 @@
 import * as types from './actionTypes';
 
-export function loadDictionaries (dictionaries) {
-	return { type: types.LOAD_DICTIONARIES, dictionaries };
+export function addDictionary (dictionary) {
+	return { type: types.ADD_DICTIONARY, dictionary };
 }
