@@ -1,14 +1,10 @@
 import {useEffect,useState} from 'react';
 import * as dictionaryApi from '../../api/dictionaryApi';
 
-const useApp = () => {    
-    const [dictionaries, setDictionaries] = useState([]);
-
+const useApp = (initial) => {    
+    const [dictionaries, setDictionaries] = useState(...[initial]);
     useEffect(() => {
-    dictionaryApi.initialStore();
-    dictionaryApi.setDictionary('color');
-    const dictionariesValues =  dictionaryApi.getDictionaries();
-    setDictionaries([...dictionariesValues]);
+    dictionaryApi.setDictionary(dictionaries);
     return () => {
         localStorage.clear();
         };
