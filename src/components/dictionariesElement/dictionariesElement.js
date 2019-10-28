@@ -1,14 +1,14 @@
 import React from 'react'
 
-function DictionariesElement({dictionary, deleteDictionary}) {
+function DictionaryElement({dictionary, deleteDictionary}) {
     return (
-        <div className="dictionary-element">
-            <div className="dictionary-element_name">{dictionary}</div>
-            <div className="dictionary-element_description">Description</div>
-            <div className="dictionary-element_btn_validate">Validate</div>
-            <div className="dictionary-element_btn_delete" onClick={()=>deleteDictionary(dictionary)}>X</div>
+        <div className="dictionaries-element">
+            <div className="dictionaries-element_name">{dictionary}</div>
+            <div className="dictionaries-element_description">Description</div>
+            <div className="dictionaries-element_btn_validate btn">Validate</div>
+            <div className="dictionaries-element_btn_delete btn" onClick={()=>deleteDictionary(dictionary)}>X</div>
         </div>
     )
 }
 
-export default DictionariesElement
+export default DictionaryElement
