@@ -1,5 +1,5 @@
 import React from 'react';
-import DictionaryList from '../dictionaryList/dictionaryList';
+import DictionariesList from '../dictionariesList/dictionariesList';
 import './App.css';
 
 function App() {
@@ -9,7 +9,7 @@ function App() {
         Dictionary Management
       </header>
       <div className="app-body">
-      <DictionaryList />
+      <DictionariesList />
       </div>
         
     </div>

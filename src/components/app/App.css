@@ -40,33 +40,41 @@
 .dictionary-list{
   border:1px solid var(--fourth-dark-color);
 }
-.dictionary-element{
+.dictionaries-element{
   padding-left: 20px;
   background-color: var(--fourth-light-color);
   color: var(--fourth-dark-color);
   display: flex;
 }
 
-.dictionary-element_name{
+.dictionaries-element_name{
   width: 20%;
 }
-.dictionary-element_description{
+.dictionaries-element_description{
   width: 60%;
 }
 
-.dictionary-element_btn_validate{
+.dictionaries-element_btn_validate{
   width: 15%;
 }
 
-.dictionary-element_btn_delete{
+.dictionaries-element_btn_delete{
   width: 5%;
 }
-.dictionary-element:nth-child(even){
+.btn{
+  text-align: center;
+  cursor: pointer;
+}
+
+.dictionaries-element_btn_validate:hover,.dictionaries-element_btn_delete:hover{
+  background-color: var(--second-light-color);
+}
+.dictionaries-element:nth-child(even){
   background-color: var(--third-light-color);
   color: var(--fourth-dark-color);
 }
 
-.dictionary-element:hover{
+.dictionaries-element:hover{
   background-color: var(--fifth-light-color);
   color: var(--first-dark-color);
 }
