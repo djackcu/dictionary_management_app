@@ -1,4 +1,4 @@
-export class Graph{
+export class Dictionary{
     constructor(name='dictionary',description = 'Default description') {
         this._adjList = new Map();
         this._name = name;
@@ -14,59 +14,88 @@ export class Graph{
 
     addVertex(vertex) {
         if (!this._adjList.has(vertex)) {
-            this._adjList.set(vertex, new Set())
+            this._adjList.set(vertex, new Set())// Delete any duplication
         };
     }
     addEdge(vertex1,vertex2) {
         this._adjList.get(vertex1).add(vertex2);
     }
-    dfs() {
-        const visited = {}
+
+    deleteVertex = (vertex) => {
+        this._adjList.delete(vertex)
+    }
+
+    deleteEdge = (vertex1,vertex2) => {
+        this._adjList.get(vertex1).delete(vertex2);
+    }
+
+    getList() {
+        const visited = {};
+        const dictionaryList = [];
         for (let node of this._adjList.keys()) {
-        this._dfsUtil(node, visited)
+        this._getListUtil(node, visited, dictionaryList)
         }
+        return dictionaryList;
     }
         
-    _dfsUtil(vertex, visited) {
+    _getListUtil(vertex, visited, dictionaryList) {
         if (!visited[vertex]){  
         visited[vertex] = true
         const neighbors = this._adjList.get(vertex);
         for (let neighbor of neighbors.keys()) {
-            console.log(vertex, neighbor)
-            this._dfsUtil(neighbor, visited)
+            dictionaryList.push({range:vertex, domain:neighbor})
+            this._getListUtil(neighbor, visited, dictionaryList)
         
         }
         }
     }
 
-    detectCycle() {
-        const visited = {};
-        const recStack = {};
-        const chain = [];
-        
+    detectConsistency() {
+        const tracker = {
+            visited: {},
+            recStack:{},
+            childVisited: {},
+        }
+        const response = {
+            isFork:false,
+            isChain:false,
+            isCycle:false,
+            fork:[],
+            chain:[]
+        }
         for (let node of this._adjList.keys()) {
-        if (this._detectCycleUtil(node, visited , recStack,chain)) 
-            return 'there is a cycle'
+        if (this._detectConsistencyUtil(node,tracker,response)) 
+            return response;
         }
-        return 'no cycle!'
+        return response
     }
 
-    _detectCycleUtil(vertex, visited, recStack,chain) {
-        if(!visited[vertex]){
-        visited[vertex] = true;
-        recStack[vertex] = true;
+    _detectConsistencyUtil(vertex,tracker,response) {
+        if(!tracker.visited[vertex]){
+        tracker.visited[vertex] = true;
+        tracker.recStack[vertex] = true;
         const nodeNeighbors = this._adjList.get(vertex);
         for(let currentNode of nodeNeighbors.keys()){
-            console.log('parent', vertex, 'Child',currentNode,'chain',chain);
-            if(this._adjList.get(currentNode).size > 0) chain.push(currentNode);
-            if(!visited[currentNode] && this._detectCycleUtil(currentNode,visited, recStack,chain)){
-            return true;
-            } else if (recStack[currentNode]){
-            return true;
+            //console.log('parent', vertex, 'Child',currentNode,'chain',response.chain,'fork',response.fork);
+            if(tracker.childVisited[currentNode]) {
+                response.isFork = true;
+                response.fork.push(currentNode);
+            };
+            tracker.childVisited[currentNode] = true;
+            if(this._adjList.get(currentNode).size > 0) {
+                response.isChain= true;
+                response.chain.push(currentNode);
+            }
+            if(!tracker.visited[currentNode] && this._detectConsistencyUtil(currentNode,tracker,response)){
+                response.isCycle = true;
+                return true;
+            } else if (tracker.recStack[currentNode]){
+                response.isCycle = true;
+                return true;
             }
         }
         }
-        recStack[vertex] = false;
+        tracker.recStack[vertex] = false;
         return false;
     }
 }
