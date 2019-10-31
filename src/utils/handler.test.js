@@ -25,6 +25,7 @@ it('testing add row', () => {
     graph.addRow('Dark Grey','Grey Cloud')
     graph.addRow('Turquoise','Caribean Sea')
 
+    console.log(graph.getList());
     const response = graph.detectConsistency();
     expect(response.isChain).toBe(false);
     expect(response.isCycle).toBe(false);
