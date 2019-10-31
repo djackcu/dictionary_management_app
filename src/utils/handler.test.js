@@ -2,102 +2,203 @@ import { Dictionary } from './handler';
 it('testing ok', () => {
     const graph = new Dictionary()
 
-    graph.addVertex('StoneGrey')
-    graph.addVertex('Anthracite')
-    graph.addVertex('Dark Grey')
-    graph.addVertex('Grey Cloud')
-    graph.addVertex('Caribean Sea')
-    graph.addVertex('Turquoise')
-    graph.addEdge('Dark Grey','StoneGrey')
-    graph.addEdge('Dark Grey','Grey Cloud')
-    graph.addEdge('Turquoise','Caribean Sea')
+    graph._addVertex('StoneGrey')
+    graph._addVertex('Anthracite')
+    graph._addVertex('Dark Grey')
+    graph._addVertex('Grey Cloud')
+    graph._addVertex('Caribean Sea')
+    graph._addVertex('Turquoise')
+    graph._addEdge('Dark Grey','StoneGrey')
+    graph._addEdge('Dark Grey','Grey Cloud')
+    graph._addEdge('Turquoise','Caribean Sea')
 
-    console.log(graph.detectConsistency())
-    console.log(graph.getList());
+    const response = graph.detectConsistency();
+    expect(response.isChain).toBe(false);
+    expect(response.isCycle).toBe(false);
+    expect(response.isFork).toBe(false);
+
 });
 
+it('testing add row', () => {
+    const graph = new Dictionary()
+    graph.addRow('Dark Grey','StoneGrey')
+    graph.addRow('Dark Grey','Grey Cloud')
+    graph.addRow('Turquoise','Caribean Sea')
+
+    const response = graph.detectConsistency();
+    expect(response.isChain).toBe(false);
+    expect(response.isCycle).toBe(false);
+    expect(response.isFork).toBe(false);
+
+});
 it('testing cycle', () => {
     const graph = new Dictionary()
 
-    graph.addVertex('StoneGrey')
-    graph.addVertex('Anthracite')
-    graph.addVertex('Dark Grey')
-    graph.addVertex('Blue')
-    graph.addVertex('Caribean Sea')
-    graph.addVertex('Turquoise')
-    graph.addEdge('Dark Grey','StoneGrey')
-    graph.addEdge('StoneGrey','Dark Grey')
-    graph.addEdge('Anthracite','Dark Grey')
-    graph.addEdge('Blue','Anthracite')
-    graph.addEdge('Turquoise','Caribean Sea')
+    graph._addVertex('StoneGrey')
+    graph._addVertex('Anthracite')
+    graph._addVertex('Dark Grey')
+    graph._addVertex('Blue')
+    graph._addVertex('Caribean Sea')
+    graph._addVertex('Turquoise')
+    graph._addEdge('Dark Grey','StoneGrey')
+    graph._addEdge('StoneGrey','Dark Grey')
+    graph._addEdge('Anthracite','Dark Grey')
+    graph._addEdge('Blue','Anthracite')
+    graph._addEdge('Turquoise','Caribean Sea')
 
-    console.log(graph.detectConsistency())
+    const response = graph.detectConsistency();
+    expect(response.isChain).toBe(true);
+    expect(response.isCycle).toBe(true);
+    expect(response.isFork).toBe(false);
 });
 
 it('testing chain', () => {
     const graph = new Dictionary()
 
-    graph.addVertex('StoneGrey')
-    graph.addVertex('Anthracite')
-    graph.addVertex('Dark Grey')
-    graph.addVertex('Blue')
-    graph.addVertex('Caribean Sea')
-    graph.addVertex('Turquoise')
-    graph.addEdge('Dark Grey','StoneGrey')
-    graph.addEdge('Anthracite','Dark Grey')
-    graph.addEdge('Blue','Anthracite')
-    graph.addEdge('Turquoise','Caribean Sea')
+    graph._addVertex('StoneGrey')
+    graph._addVertex('Anthracite')
+    graph._addVertex('Dark Grey')
+    graph._addVertex('Blue')
+    graph._addVertex('Caribean Sea')
+    graph._addVertex('Turquoise')
+    graph._addEdge('Dark Grey','StoneGrey')
+    graph._addEdge('Anthracite','Dark Grey')
+    graph._addEdge('Blue','Anthracite')
+    graph._addEdge('Turquoise','Caribean Sea')
 
-    console.log(graph.detectConsistency())
+    const response = graph.detectConsistency();
+    expect(response.isChain).toBe(true);
+    expect(response.isCycle).toBe(false);
+    expect(response.isFork).toBe(false);
 });
+
 it('testing fork', () => {
     const graph = new Dictionary()
 
-    graph.addVertex('StoneGrey')
-    graph.addVertex('Anthracite')
-    graph.addVertex('Dark Grey')
-    graph.addVertex('Blue')
-    graph.addVertex('Caribean Sea')
-    graph.addVertex('Turquoise')
-    graph.addEdge('Dark Grey','StoneGrey')
-    graph.addEdge('Anthracite','StoneGrey')
-    graph.addEdge('Turquoise','Caribean Sea')
+    graph._addVertex('StoneGrey')
+    graph._addVertex('Anthracite')
+    graph._addVertex('Dark Grey')
+    graph._addVertex('Blue')
+    graph._addVertex('Caribean Sea')
+    graph._addVertex('Turquoise')
+    graph._addEdge('Dark Grey','StoneGrey')
+    graph._addEdge('Anthracite','StoneGrey')
+    graph._addEdge('Turquoise','Caribean Sea')
 
-    console.log(graph.detectConsistency())
+    const response = graph.detectConsistency();
+    expect(response.isChain).toBe(false);
+    expect(response.isCycle).toBe(false);
+    expect(response.isFork).toBe(true);
 });
 
 
 it('testing fork and chain', () => {
     const graph = new Dictionary()
 
-    graph.addVertex('StoneGrey')
-    graph.addVertex('Anthracite')
-    graph.addVertex('Dark Grey')
-    graph.addVertex('Blue')
-    graph.addVertex('Caribean Sea')
-    graph.addVertex('Turquoise')
-    graph.addEdge('Dark Grey','StoneGrey')
-    graph.addEdge('Anthracite','StoneGrey')
-    graph.addEdge('Anthracite','Dark Grey')
-    graph.addEdge('Turquoise','Caribean Sea')
+    graph._addVertex('StoneGrey')
+    graph._addVertex('Anthracite')
+    graph._addVertex('Dark Grey')
+    graph._addVertex('Blue')
+    graph._addVertex('Caribean Sea')
+    graph._addVertex('Turquoise')
+    graph._addEdge('Dark Grey','StoneGrey')
+    graph._addEdge('Anthracite','StoneGrey')
+    graph._addEdge('Anthracite','Dark Grey')
+    graph._addEdge('Turquoise','Caribean Sea')
 
-    console.log(graph.detectConsistency())
+    const response = graph.detectConsistency();
+    expect(response.isChain).toBe(true);
+    expect(response.isCycle).toBe(false);
+    expect(response.isFork).toBe(true);
 });
 
 it('testing fork and chain and cycle', () => {
     const graph = new Dictionary()
 
-    graph.addVertex('StoneGrey')
-    graph.addVertex('Anthracite')
-    graph.addVertex('Dark Grey')
-    graph.addVertex('Blue')
-    graph.addVertex('Caribean Sea')
-    graph.addVertex('Turquoise')
-    graph.addEdge('Dark Grey','StoneGrey')
-    graph.addEdge('Anthracite','StoneGrey')
-    graph.addEdge('Anthracite','Dark Grey')
-    graph.addEdge('StoneGrey','Turquoise')
-    graph.addEdge('Turquoise','Anthracite')
+    graph._addVertex('StoneGrey')
+    graph._addVertex('Anthracite')
+    graph._addVertex('Dark Grey')
+    graph._addVertex('Blue')
+    graph._addVertex('Caribean Sea')
+    graph._addVertex('Turquoise')
+    graph._addEdge('Dark Grey','StoneGrey')
+    graph._addEdge('Anthracite','StoneGrey')
+    graph._addEdge('Anthracite','Dark Grey')
+    graph._addEdge('StoneGrey','Turquoise')
+    graph._addEdge('Turquoise','Anthracite')
 
-    console.log(graph.detectConsistency())
+    const response = graph.detectConsistency();
+    expect(response.isChain).toBe(true);
+    expect(response.isCycle).toBe(true);
+});
+
+it('testing cycle cleaned', () => {
+    const graph = new Dictionary()
+    graph.addRow('Dark Grey','StoneGrey')
+    graph.addRow('StoneGrey','Dark Grey')
+    graph.addRow('Anthracite','Dark Grey')
+    graph.addRow('Blue','Anthracite')
+    graph.addRow('Turquoise','Caribean Sea')
+
+    
+    const response = graph.detectConsistency();
+    expect(response.isChain).toBe(false);
+    expect(response.isCycle).toBe(false);
+    expect(response.isFork).toBe(false);
+});
+
+it('testing chain cleaned', () => {
+    const graph = new Dictionary()
+    graph.addRow('Dark Grey','StoneGrey')
+    graph.addRow('Anthracite','Dark Grey')
+    graph.addRow('Blue','Anthracite')
+    graph.addRow('Turquoise','Caribean Sea')
+
+    
+    const response = graph.detectConsistency();
+    expect(response.isChain).toBe(false);
+    expect(response.isCycle).toBe(false);
+    expect(response.isFork).toBe(false);
+});
+it('testing fork cleaned', () => {
+    const graph = new Dictionary()
+    graph.addRow('Dark Grey','StoneGrey')
+    graph.addRow('Anthracite','StoneGrey')
+    graph.addRow('Turquoise','Caribean Sea')
+
+    
+    const response = graph.detectConsistency();
+    expect(response.isChain).toBe(false);
+    expect(response.isCycle).toBe(false);
+    expect(response.isFork).toBe(false);
+});
+
+
+it('testing fork and chain cleaned', () => {
+    const graph = new Dictionary()
+    graph.addRow('Dark Grey','StoneGrey')
+    graph.addRow('Anthracite','StoneGrey')
+    graph.addRow('Anthracite','Dark Grey')
+    graph.addRow('Turquoise','Caribean Sea')
+
+    
+    const response = graph.detectConsistency();
+    expect(response.isChain).toBe(false);
+    expect(response.isCycle).toBe(false);
+    expect(response.isFork).toBe(false);
+});
+
+it('testing fork and chain and cycle cleaned', () => {
+    const graph = new Dictionary()
+    graph.addRow('Dark Grey','StoneGrey')
+    graph.addRow('Anthracite','StoneGrey')
+    graph.addRow('Anthracite','Dark Grey')
+    graph.addRow('StoneGrey','Turquoise')
+    graph.addRow('Turquoise','Anthracite')
+
+    const response = graph.detectConsistency();
+    expect(response.isChain).toBe(false);
+    expect(response.isCycle).toBe(false);
+    expect(response.isFork).toBe(false);
+    
 });

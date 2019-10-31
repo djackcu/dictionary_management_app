@@ -12,20 +12,38 @@ export class Dictionary{
         return this._description;
     }
 
-    addVertex(vertex) {
+    addRow(range, domain){
+        try {
+            if(this._adjList.has(range) && this._adjList.get(range).size === 0) throw new Error('This range is domain');
+            if(this._adjList.has(domain)) throw new Error('This domain exist');
+            if(!this._adjList.has(range)) this._addVertex(range);
+            this._addVertex(domain);
+            this._addEdge(range,domain);
+        } catch (error) {
+            
+        }
+
+    }
+
+    _addVertex(vertex) {
         if (!this._adjList.has(vertex)) {
             this._adjList.set(vertex, new Set())// Delete any duplication
         };
     }
-    addEdge(vertex1,vertex2) {
+
+    _addEdge(vertex1,vertex2) {
         this._adjList.get(vertex1).add(vertex2);
     }
 
-    deleteVertex = (vertex) => {
+    deleteRow(domain,range){
+
+    }
+
+    _deleteVertex = (vertex) => {
         this._adjList.delete(vertex)
     }
 
-    deleteEdge = (vertex1,vertex2) => {
+    _deleteEdge = (vertex1,vertex2) => {
         this._adjList.get(vertex1).delete(vertex2);
     }
 
