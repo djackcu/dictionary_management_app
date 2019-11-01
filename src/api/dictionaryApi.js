@@ -1,5 +1,6 @@
 export function setDictionary(dictionaries) {
-  localStorage.setItem("dictionaries",dictionaries.join(','));
+  const nameDictionaries = dictionaries.map(dict=>dict.name).join(',');
+  localStorage.setItem("dictionaries",nameDictionaries);
 }
 
 export function getDictionaries() {

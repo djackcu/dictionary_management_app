@@ -4,7 +4,7 @@ function DictionariesForm({addRow}) {
     const [row, setRow] = useState({domain:'',range:''});
     const handlerAddDictionary = () => {
         addRow(row);
-        setRow('');
+        setRow({domain:'',range:''});
     };
     return (
         <div className="dictionary-form">
@@ -13,14 +13,14 @@ function DictionariesForm({addRow}) {
             className="dictionary-form-add_text" 
             value={row.domain} 
             onChange={(e) => { 
-                setRow(e.target.value)    
+                setRow({...row,domain:e.target.value})    
             }}/>
             <input type="text" 
             name="range" 
             className="dictionary-form-add_text" 
             value={row.range} 
             onChange={(e) => { 
-                setRow(e.target.value)    
+                setRow({...row,range:e.target.value})    
             }}/>
             <button className="dictionary-form-add_button" onClick={handlerAddDictionary}>Add</button>
         </div>

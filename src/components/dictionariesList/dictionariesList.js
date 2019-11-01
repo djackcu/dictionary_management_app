@@ -10,7 +10,7 @@ function DictionariesList() {
             <DictionariesForm  addDictionary={addDictionary}/>
             <div className="dictionary-list">
                 {dictionaries.map((dict) => (
-                <DictionariesElement dictionary={dict} key={dict} deleteDictionary={deleteDictionary}/>
+                <DictionariesElement dictionary={dict} key={dict.name} deleteDictionary={deleteDictionary}/>
                 ))}
             </div>
         </div>

@@ -16,7 +16,7 @@ const useDictionary = (initialDictionary) => {
     // const deleteDictionary = (dictionary) => dispatch({ type: types.DELETE_DICTIONARY, dictionary });
     const addRow = (row) => {
         //todo add row to dictionary
-       // setDictionary([...dictionary])
+        setDictionary([...dictionary, row])
     }
     
 
