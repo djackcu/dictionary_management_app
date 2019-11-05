@@ -7,11 +7,9 @@ export class Dictionary{
     get name(){
         return this._name;
     }
-
     get description(){
         return this._description;
     }
-
     addRow(range, domain){
         try {
             if(this._adjList.has(range) && this._adjList.get(range).size === 0) throw new Error('This range is domain');
@@ -19,10 +17,23 @@ export class Dictionary{
             if(!this._adjList.has(range)) this._addVertex(range);
             this._addVertex(domain);
             this._addEdge(range,domain);
+            return this._adjList;
         } catch (error) {
-            
+            console.log(error);
         }
+    }
+    deleteRow(domain,range){
+        this._deleteVertex(domain);
+        this._deleteEdge(range,domain)
+        return this._adjList;
+    }
 
+    updateRow(domain,range){
+        const oldRange = this._getRange(domain)
+        this._deleteEdge(oldRange,domain)
+        this._addEdge(range,domain)
+        
+        return this._adjList;
     }
 
     _addVertex(vertex) {
@@ -35,16 +46,17 @@ export class Dictionary{
         this._adjList.get(vertex1).add(vertex2);
     }
 
-    deleteRow(domain,range){
-
-    }
-
     _deleteVertex = (vertex) => {
         this._adjList.delete(vertex)
     }
 
     _deleteEdge = (vertex1,vertex2) => {
         this._adjList.get(vertex1).delete(vertex2);
+    }
+    _getRange = (domain) => {
+        for (let [key,value] of this._adjList) {
+            if(value.has(domain)) return key;
+            }
     }
 
     getList() {
