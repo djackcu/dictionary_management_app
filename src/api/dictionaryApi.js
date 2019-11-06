@@ -22,3 +22,10 @@ export function getRow(dictionary, domain){
   console.log(domainDB);
   return localStorage.getItem(domainDB);
 }
+
+//for original dataset 
+export function deleteRow(dictionary, domain){
+  const domainDB = camelCase(dictionary.name + ' '+domain);
+  console.log(domainDB);
+  return localStorage.removeItem(domain)
+}

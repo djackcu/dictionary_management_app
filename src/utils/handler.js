@@ -1,77 +1,77 @@
 export class Dictionary{
-    constructor(name='dictionary',description = 'Default description') {
-        this._adjList = new Map();
-        this._name = name;
-        this._description = description;
+    constructor(data = {name:'dictionary',description :'Default description', dataList:new Map()}) {
+        this.dataList = data.dataList;
+        this.name = data.name;
+        this.description = data.description;
         }
-    get name(){
-        return this._name;
-    }
-    get description(){
-        return this._description;
-    }
     addRow(range, domain){
         try {
-            if(this._adjList.has(range) && this._adjList.get(range).size === 0) throw new Error('This range is domain');
-            if(this._adjList.has(domain)) throw new Error('This domain exist');
-            if(!this._adjList.has(range)) this._addVertex(range);
+            if(this.dataList.has(range) && this.dataList.get(range).size === 0) throw new Error('This range is domain');
+            if(this.dataList.has(domain)) throw new Error('This domain exist');
+            if(!this.dataList.has(range)) this._addVertex(range);
             this._addVertex(domain);
             this._addEdge(range,domain);
-            return this._adjList;
+            return this;
         } catch (error) {
-            console.log(error);
+            //console.log(error);
         }
     }
-    deleteRow(domain,range){
+    deleteRow(range,domain){
         this._deleteVertex(domain);
         this._deleteEdge(range,domain)
-        return this._adjList;
+        return this;
     }
 
-    updateRow(domain,range){
+    updateRow(range,domain){
         const oldRange = this._getRange(domain)
-        this._deleteEdge(oldRange,domain)
-        this._addEdge(range,domain)
+        this.deleteRow(oldRange,domain)
+        try {
+            this.addRow(range,domain)
+        } catch (error) {
+            this.addRow(oldRange,domain)
+        }
         
-        return this._adjList;
+        return this;
     }
 
-    _addVertex(vertex) {
-        if (!this._adjList.has(vertex)) {
-            this._adjList.set(vertex, new Set())// Delete any duplication
+    _addVertex(vertex){
+        if (!this.dataList.has(vertex)) {
+            this.dataList.set(vertex, new Set())// Delete any duplication
         };
     }
 
-    _addEdge(vertex1,vertex2) {
-        this._adjList.get(vertex1).add(vertex2);
+    _addEdge(vertex1,vertex2){
+        this.dataList.get(vertex1).add(vertex2);
     }
 
-    _deleteVertex = (vertex) => {
-        this._adjList.delete(vertex)
+    _deleteVertex(vertex){
+        this.dataList.delete(vertex)
     }
 
-    _deleteEdge = (vertex1,vertex2) => {
-        this._adjList.get(vertex1).delete(vertex2);
+    _deleteEdge(vertex1,vertex2){
+        this.dataList.get(vertex1).delete(vertex2);
+        if(this.dataList.get(vertex1).size===0) this._deleteVertex(vertex1)
     }
-    _getRange = (domain) => {
-        for (let [key,value] of this._adjList) {
-            if(value.has(domain)) return key;
+
+    _getRange(domain){
+        for (let [key,value] of this.dataList) {
+            if(value.has(domain)) return (key);
             }
     }
 
-    getList() {
+    getList(){
         const visited = {};
         const dictionaryList = [];
-        for (let node of this._adjList.keys()) {
+        for (let node of this.dataList.keys()) {
         this._getListUtil(node, visited, dictionaryList)
         }
         return dictionaryList;
     }
         
-    _getListUtil(vertex, visited, dictionaryList) {
+    _getListUtil(vertex, visited, dictionaryList){
         if (!visited[vertex]){  
         visited[vertex] = true
-        const neighbors = this._adjList.get(vertex);
+        const neighbors = this.dataList.get(vertex);
         for (let neighbor of neighbors.keys()) {
             dictionaryList.push({range:vertex, domain:neighbor})
             this._getListUtil(neighbor, visited, dictionaryList)
@@ -80,7 +80,7 @@ export class Dictionary{
         }
     }
 
-    detectConsistency() {
+    detectConsistency(){
         const tracker = {
             visited: {},
             recStack:{},
@@ -93,18 +93,18 @@ export class Dictionary{
             fork:[],
             chain:[]
         }
-        for (let node of this._adjList.keys()) {
+        for (let node of this.dataList.keys()) {
         if (this._detectConsistencyUtil(node,tracker,response)) 
             return response;
         }
         return response
     }
 
-    _detectConsistencyUtil(vertex,tracker,response) {
+    _detectConsistencyUtil(vertex,tracker,response){
         if(!tracker.visited[vertex]){
         tracker.visited[vertex] = true;
         tracker.recStack[vertex] = true;
-        const nodeNeighbors = this._adjList.get(vertex);
+        const nodeNeighbors = this.dataList.get(vertex);
         for(let currentNode of nodeNeighbors.keys()){
             //console.log('parent', vertex, 'Child',currentNode,'chain',response.chain,'fork',response.fork);
             if(tracker.childVisited[currentNode]) {
@@ -112,7 +112,7 @@ export class Dictionary{
                 response.fork.push(currentNode);
             };
             tracker.childVisited[currentNode] = true;
-            if(this._adjList.get(currentNode).size > 0) {
+            if(this.dataList.get(currentNode).size > 0) {
                 response.isChain= true;
                 response.chain.push(currentNode);
             }
