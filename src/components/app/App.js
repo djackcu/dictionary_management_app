@@ -11,7 +11,7 @@ function App() {
       </header>
       <div className="app-body">
       <DictionariesList />
-      <DictionaryList />
+      <DictionaryList dictionaryName={'color'}/>
       </div>
         
     </div>

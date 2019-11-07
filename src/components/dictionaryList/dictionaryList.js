@@ -3,8 +3,8 @@ import useDictionary from './useDictionary';
 import DictionaryElement from '../dictionaryElement/dictionaryElement';
 import DictionaryForm from '../dictionaryForm/dictionaryForm'
 
-function DictionaryList() {
-    const {dataList, addRow, deleteRow,updateRow} = useDictionary('color');
+function DictionaryList({dictionaryName}) {
+    const {dataList, addRow, deleteRow,updateRow} = useDictionary(dictionaryName);
     //console.log(dataList);
     return (
         <div>
