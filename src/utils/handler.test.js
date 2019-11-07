@@ -15,10 +15,11 @@ it('testing ok', () => {
     graph._addEdge('Turquoise','Caribean Sea')
 
     const response = graph.detectConsistency();
-    expect(response.isChain).toBe(false);
+    expect(response).toBe(true);
+    /* expect(response.isChain).toBe(false);
     expect(response.isCycle).toBe(false);
     expect(response.isFork).toBe(false);
-
+ */
 });
 
 it('testing add row', () => {
@@ -28,10 +29,11 @@ it('testing add row', () => {
     graph.addRow('Turquoise','Caribean Sea')
 
     const response = graph.detectConsistency();
-    expect(response.isChain).toBe(false);
+    expect(response).toBe(true);
+/*     expect(response.isChain).toBe(false);
     expect(response.isCycle).toBe(false);
     expect(response.isFork).toBe(false);
-
+ */
 });
 
 it('testing add row', () => {
@@ -45,9 +47,10 @@ it('testing add row', () => {
 
     console.log(graph2.getList());
     const response = graph.detectConsistency();
-    expect(response.isChain).toBe(false);
+    expect(response).toBe(true);
+    /* expect(response.isChain).toBe(false);
     expect(response.isCycle).toBe(false);
-    expect(response.isFork).toBe(false);
+    expect(response.isFork).toBe(false); */
 });
 
 it('testing cycle', () => {
@@ -166,9 +169,11 @@ it('testing cycle cleaned', () => {
 
     
     const response = graph.detectConsistency();
-    expect(response.isChain).toBe(false);
+    
+    expect(response).toBe(true);
+    /* expect(response.isChain).toBe(false);
     expect(response.isCycle).toBe(false);
-    expect(response.isFork).toBe(false);
+    expect(response.isFork).toBe(false); */
 
 });
 
@@ -181,9 +186,10 @@ it('testing chain cleaned', () => {
 
     
     const response = graph.detectConsistency();
-    expect(response.isChain).toBe(false);
+    expect(response).toBe(true);
+    /* expect(response.isChain).toBe(false);
     expect(response.isCycle).toBe(false);
-    expect(response.isFork).toBe(false);
+    expect(response.isFork).toBe(false); */
 
 });
 it('testing fork cleaned', () => {
@@ -194,9 +200,10 @@ it('testing fork cleaned', () => {
 
     
     const response = graph.detectConsistency();
-    expect(response.isChain).toBe(false);
+    expect(response).toBe(true);
+    /* expect(response.isChain).toBe(false);
     expect(response.isCycle).toBe(false);
-    expect(response.isFork).toBe(false);
+    expect(response.isFork).toBe(false); */
 });
 
 
@@ -209,9 +216,10 @@ it('testing fork and chain cleaned', () => {
 
     
     const response = graph.detectConsistency();
-    expect(response.isChain).toBe(false);
+    expect(response).toBe(true);
+    /* expect(response.isChain).toBe(false);
     expect(response.isCycle).toBe(false);
-    expect(response.isFork).toBe(false);
+    expect(response.isFork).toBe(false); */
 });
 
 it('testing fork and chain and cycle cleaned', () => {
@@ -223,8 +231,9 @@ it('testing fork and chain and cycle cleaned', () => {
     graph.addRow('Turquoise','Anthracite')
 
     const response = graph.detectConsistency();
-    expect(response.isChain).toBe(false);
+    expect(response).toBe(true);
+    /*expect(response.isChain).toBe(false);
     expect(response.isCycle).toBe(false);
-    expect(response.isFork).toBe(false);
+    expect(response.isFork).toBe(false); */
     
 });

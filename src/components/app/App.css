@@ -50,7 +50,7 @@
 .dictionaries-element_name{
   width: 20%;
 }
-.dictionaries-element_description{
+.dictionaries-element_description,.dictionary-form-edit_text{
   width: 60%;
 }
 
@@ -88,7 +88,7 @@
   font-size: calc(10px + 2vmin);
   color: var(--first-dark-color);
 }
-.dictionary-form-add_text{
+.dictionary-form-add_text, .dictionary-form-edit_text{
   font-size: calc(10px + 2vmin);
   color: var(--first-dark-color);
 }

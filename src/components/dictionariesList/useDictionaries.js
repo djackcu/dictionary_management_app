@@ -9,15 +9,15 @@ const useDictionaries = () => {
     useEffect(() => {
     dictionaryApi.setDictionary(dictionaries);
     return () => {
-        localStorage.clear();
+        //localStorage.clear();
         };
     },[dictionaries]);
     const addDictionary = (dictionary) => dispatch({ type: types.ADD_DICTIONARY, dictionary });
     const deleteDictionary = (dictionary) => dispatch({ type: types.DELETE_DICTIONARY, dictionary });
-    
+    const validateDictionary = (dictionary) => dispatch({ type: types.VALIDATE_DICTIONARY, dictionary });
     
 
-    return {dictionaries, addDictionary, deleteDictionary}
+    return {dictionaries, addDictionary, deleteDictionary,validateDictionary}
 }
 
 export default useDictionaries

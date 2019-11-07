@@ -3,23 +3,19 @@ import useDictionary from './useDictionary';
 import DictionaryElement from '../dictionaryElement/dictionaryElement';
 import DictionaryForm from '../dictionaryForm/dictionaryForm'
 
-function DictionariesList() {
-    const initialDict =  [ 
-        { range: 'Dark Grey', domain: 'StoneGrey' },
-        { range: 'Dark Grey', domain: 'Grey Cloud' },
-        { range: 'Turquoise', domain: 'Caribean Sea' }
-        ];
-    const {dictionary,addRow} = useDictionary(initialDict);
+function DictionaryList() {
+    const {dataList, addRow, deleteRow,updateRow} = useDictionary('color');
+    //console.log(dataList);
     return (
         <div>
             <DictionaryForm addRow={addRow}/>
             <div className="dictionary-list">
-                {dictionary.map((dict) => (
-                <DictionaryElement dictionary={dict} key={dict.domain}/>
+                {dataList.map((row) => (
+                <DictionaryElement row={row} key={row.domain} deleteRow={deleteRow} updateRow={updateRow}/>
                 ))}
             </div>
         </div>
     )
 }
 
-export default DictionariesList
+export default DictionaryList

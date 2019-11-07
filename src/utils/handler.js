@@ -3,6 +3,7 @@ export class Dictionary{
         this.dataList = data.dataList;
         this.name = data.name;
         this.description = data.description;
+        this.isValidated = false;
         }
     addRow(range, domain){
         try {
@@ -13,7 +14,7 @@ export class Dictionary{
             this._addEdge(range,domain);
             return this;
         } catch (error) {
-            //console.log(error);
+            return this;
         }
     }
     deleteRow(range,domain){
@@ -97,7 +98,7 @@ export class Dictionary{
         if (this._detectConsistencyUtil(node,tracker,response)) 
             return response;
         }
-        return response
+        return(!response.isFork && !response.isChain && !response.isCycle)?true:response;
     }
 
     _detectConsistencyUtil(vertex,tracker,response){

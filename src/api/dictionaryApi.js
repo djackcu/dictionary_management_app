@@ -10,22 +10,22 @@ export function getDictionaries() {
 }
 
 //for dictionary manager and original client fetch from database 
-export function setRow(dictionary,domain,range){
-  const domainDB = camelCase(dictionary.name + ' '+domain);
+export function setRow(dictionaryName,domain,range){
+  const domainDB = camelCase(dictionaryName + ' '+domain);
   console.log(domainDB);
   localStorage.setItem(domainDB,range)
 }
 
 //for original dataset 
-export function getRow(dictionary, domain){
-  const domainDB = camelCase(dictionary.name + ' '+domain);
+export function getRow(dictionaryName, domain){
+  const domainDB = camelCase(dictionaryName + ' '+domain);
   console.log(domainDB);
   return localStorage.getItem(domainDB);
 }
 
 //for original dataset 
-export function deleteRow(dictionary, domain){
-  const domainDB = camelCase(dictionary.name + ' '+domain);
+export function deleteRow(dictionaryName, domain){
+  const domainDB = camelCase(dictionaryName + ' '+domain);
   console.log(domainDB);
   return localStorage.removeItem(domain)
 }
