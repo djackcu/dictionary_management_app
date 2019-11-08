@@ -5,10 +5,10 @@ import * as dictionaryApi from '../../api/dictionaryApi';
 import {Dictionary} from '../../utils/handler';
 
 const useDictionary = (initialDictionary) => {    
+    
     const dictionary = useSelector(state => state.dictionaries.find((dict => dict.name === initialDictionary)));
     const dispatch = useDispatch();
-    //console.log(dictionaries);
-    //const [dictionary,setDictionary] = useState({...initialDictionary})
+    
     const [dataList, setDataList] = useState(new Dictionary(dictionary).getList())
     useEffect(() => {
         setDataList(new Dictionary(dictionary).getList())

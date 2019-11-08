@@ -2,9 +2,11 @@ import React from 'react'
 import useDictionary from './useDictionary';
 import DictionaryElement from '../dictionaryElement/dictionaryElement';
 import DictionaryForm from '../dictionaryForm/dictionaryForm'
+import {useParams} from "react-router-dom";
 
-function DictionaryList({dictionaryName}) {
-    const {dataList, addRow, deleteRow,updateRow} = useDictionary(dictionaryName);
+function DictionaryList() {
+    const { name } = useParams();
+    const {dataList, addRow, deleteRow,updateRow} = useDictionary(name);
     //console.log(dataList);
     return (
         <div>

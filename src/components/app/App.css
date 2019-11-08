@@ -37,7 +37,7 @@
   padding: 10px 10vw 10px 10vw;
 }
 
-.dictionary-list{
+.dictionary-list, nav{
   border:1px solid var(--fourth-dark-color);
 }
 .dictionaries-element{
@@ -84,7 +84,7 @@
   justify-content: flex-end;
   }
 
-.dictionary-form-add_button{
+.dictionary-form-add_button, nav{
   font-size: calc(10px + 2vmin);
   color: var(--first-dark-color);
 }
