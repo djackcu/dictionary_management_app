@@ -24,7 +24,7 @@ const useDictionary = (initialDictionary) => {
     const updateRow = (row) => dispatch({ type: types.UPDATE_ROW, dictionary:dictionary, range:row.range, domain:row.domain });
     
 
-    return {dataList, addRow, deleteRow,updateRow}
+    return {dataList, addRow, deleteRow,updateRow} 
 }
 
 export default useDictionary
