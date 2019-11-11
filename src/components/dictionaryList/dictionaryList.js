@@ -13,7 +13,7 @@ function DictionaryList() {
             <DictionaryForm addRow={addRow}/>
             <div className="dictionary-list">
                 {dataList.map((row) => (
-                <DictionaryElement row={row} key={row.domain} deleteRow={deleteRow} updateRow={updateRow}/>
+                <DictionaryElement row={row} key={row.domain+row.range} deleteRow={deleteRow} updateRow={updateRow}/>
                 ))}
             </div>
         </div>

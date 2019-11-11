@@ -9,9 +9,9 @@ const useDictionary = (initialDictionary) => {
     const dictionary = useSelector(state => state.dictionaries.find((dict => dict.name === initialDictionary)));
     const dispatch = useDispatch();
     
-    const [dataList, setDataList] = useState(new Dictionary(dictionary).getList())
+    const [dataList, setDataList] = useState(new Dictionary(dictionary).getValidatedList())
     useEffect(() => {
-        setDataList(new Dictionary(dictionary).getList())
+        setDataList(new Dictionary(dictionary).getValidatedList())
         new Dictionary(dictionary).getList().forEach((row) => {
             dictionaryApi.setRow(dictionary.name,row.domain,row.range);
         })

@@ -15,11 +15,9 @@ it('testing ok', () => {
     graph._addEdge('Turquoise','Caribean Sea')
 
     const response = graph.detectConsistency();
-    expect(response).toBe(true);
-    /* expect(response.isChain).toBe(false);
+    expect(response.isChain).toBe(false);
     expect(response.isCycle).toBe(false);
     expect(response.isFork).toBe(false);
- */
 });
 
 it('testing add row', () => {
@@ -29,11 +27,10 @@ it('testing add row', () => {
     graph.addRow('Turquoise','Caribean Sea')
 
     const response = graph.detectConsistency();
-    expect(response).toBe(true);
-/*     expect(response.isChain).toBe(false);
+    
+expect(response.isChain).toBe(false);
     expect(response.isCycle).toBe(false);
     expect(response.isFork).toBe(false);
- */
 });
 
 it('testing add row', () => {
@@ -45,12 +42,11 @@ it('testing add row', () => {
         .deleteRow('Turquoise','Caribean Sea')
         .updateRow('Anthracite','Grey Cloud')
 
-    console.log(graph2.getList());
+    console.log(graph2.getValidatedList());
     const response = graph.detectConsistency();
-    expect(response).toBe(true);
-    /* expect(response.isChain).toBe(false);
+    expect(response.isChain).toBe(false);
     expect(response.isCycle).toBe(false);
-    expect(response.isFork).toBe(false); */
+    expect(response.isFork).toBe(false); 
 });
 
 it('testing cycle', () => {
@@ -69,6 +65,8 @@ it('testing cycle', () => {
     graph._addEdge('Turquoise','Caribean Sea')
 
     const response = graph.detectConsistency();
+    console.log(graph.getValidatedList());
+    console.log(response);
     expect(response.isChain).toBe(true);
     expect(response.isCycle).toBe(true);
     expect(response.isFork).toBe(false);
@@ -90,6 +88,8 @@ it('testing chain', () => {
     graph._addEdge('Turquoise','Caribean Sea')
 
     const response = graph.detectConsistency();
+    console.log(graph.getValidatedList());
+    console.log(response);
     expect(response.isChain).toBe(true);
     expect(response.isCycle).toBe(false);
     expect(response.isFork).toBe(false);
@@ -110,6 +110,8 @@ it('testing fork', () => {
     graph._addEdge('Turquoise','Caribean Sea')
 
     const response = graph.detectConsistency();
+    console.log(graph.getValidatedList());
+    console.log(response);
     expect(response.isChain).toBe(false);
     expect(response.isCycle).toBe(false);
     expect(response.isFork).toBe(true);
@@ -132,6 +134,8 @@ it('testing fork and chain', () => {
     graph._addEdge('Turquoise','Caribean Sea')
 
     const response = graph.detectConsistency();
+    console.log(graph.getValidatedList());
+    console.log(response);
     expect(response.isChain).toBe(true);
     expect(response.isCycle).toBe(false);
     expect(response.isFork).toBe(true);
@@ -154,6 +158,9 @@ it('testing fork and chain and cycle', () => {
     graph._addEdge('Turquoise','Anthracite')
 
     const response = graph.detectConsistency();
+    console.log(graph.getValidatedList());
+    console.log(response);
+    console.log(graph.dataList);
     expect(response.isChain).toBe(true);
     expect(response.isCycle).toBe(true);
 
@@ -161,79 +168,73 @@ it('testing fork and chain and cycle', () => {
 
 it('testing cycle cleaned', () => {
     const graph = new Dictionary()
-    graph.addRow('Dark Grey','StoneGrey')
-    graph.addRow('StoneGrey','Dark Grey')
-    graph.addRow('Anthracite','Dark Grey')
-    graph.addRow('Blue','Anthracite')
-    graph.addRow('Turquoise','Caribean Sea')
+    graph.addValidatedRow('Dark Grey','StoneGrey')
+    graph.addValidatedRow('StoneGrey','Dark Grey')
+    graph.addValidatedRow('Anthracite','Dark Grey')
+    graph.addValidatedRow('Blue','Anthracite')
+    graph.addValidatedRow('Turquoise','Caribean Sea')
 
     
     const response = graph.detectConsistency();
     
-    expect(response).toBe(true);
-    /* expect(response.isChain).toBe(false);
+    expect(response.isChain).toBe(false);
     expect(response.isCycle).toBe(false);
-    expect(response.isFork).toBe(false); */
+    expect(response.isFork).toBe(false); 
 
 });
 
 it('testing chain cleaned', () => {
     const graph = new Dictionary()
-    graph.addRow('Dark Grey','StoneGrey')
-    graph.addRow('Anthracite','Dark Grey')
-    graph.addRow('Blue','Anthracite')
-    graph.addRow('Turquoise','Caribean Sea')
+    graph.addValidatedRow('Dark Grey','StoneGrey')
+    graph.addValidatedRow('Anthracite','Dark Grey')
+    graph.addValidatedRow('Blue','Anthracite')
+    graph.addValidatedRow('Turquoise','Caribean Sea')
 
     
     const response = graph.detectConsistency();
-    expect(response).toBe(true);
-    /* expect(response.isChain).toBe(false);
+    expect(response.isChain).toBe(false);
     expect(response.isCycle).toBe(false);
-    expect(response.isFork).toBe(false); */
+    expect(response.isFork).toBe(false);
 
 });
 it('testing fork cleaned', () => {
     const graph = new Dictionary()
-    graph.addRow('Dark Grey','StoneGrey')
-    graph.addRow('Anthracite','StoneGrey')
-    graph.addRow('Turquoise','Caribean Sea')
+    graph.addValidatedRow('Dark Grey','StoneGrey')
+    graph.addValidatedRow('Anthracite','StoneGrey')
+    graph.addValidatedRow('Turquoise','Caribean Sea')
 
     
     const response = graph.detectConsistency();
-    expect(response).toBe(true);
-    /* expect(response.isChain).toBe(false);
+    expect(response.isChain).toBe(false);
     expect(response.isCycle).toBe(false);
-    expect(response.isFork).toBe(false); */
+    expect(response.isFork).toBe(false);
 });
 
 
 it('testing fork and chain cleaned', () => {
     const graph = new Dictionary()
-    graph.addRow('Dark Grey','StoneGrey')
-    graph.addRow('Anthracite','StoneGrey')
-    graph.addRow('Anthracite','Dark Grey')
-    graph.addRow('Turquoise','Caribean Sea')
+    graph.addValidatedRow('Dark Grey','StoneGrey')
+    graph.addValidatedRow('Anthracite','StoneGrey')
+    graph.addValidatedRow('Anthracite','Dark Grey')
+    graph.addValidatedRow('Turquoise','Caribean Sea')
 
     
     const response = graph.detectConsistency();
-    expect(response).toBe(true);
-    /* expect(response.isChain).toBe(false);
+    expect(response.isChain).toBe(false);
     expect(response.isCycle).toBe(false);
-    expect(response.isFork).toBe(false); */
+    expect(response.isFork).toBe(false);
 });
 
 it('testing fork and chain and cycle cleaned', () => {
     const graph = new Dictionary()
-    graph.addRow('Dark Grey','StoneGrey')
-    graph.addRow('Anthracite','StoneGrey')
-    graph.addRow('Anthracite','Dark Grey')
-    graph.addRow('StoneGrey','Turquoise')
-    graph.addRow('Turquoise','Anthracite')
+    graph.addValidatedRow('Dark Grey','StoneGrey')
+    graph.addValidatedRow('Anthracite','StoneGrey')
+    graph.addValidatedRow('Anthracite','Dark Grey')
+    graph.addValidatedRow('StoneGrey','Turquoise')
+    graph.addValidatedRow('Turquoise','Anthracite')
 
     const response = graph.detectConsistency();
-    expect(response).toBe(true);
-    /*expect(response.isChain).toBe(false);
+    expect(response.isChain).toBe(false);
     expect(response.isCycle).toBe(false);
-    expect(response.isFork).toBe(false); */
-    
+    expect(response.isFork).toBe(false);
 });

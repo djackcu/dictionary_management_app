@@ -3,9 +3,14 @@ export class Dictionary{
         this.dataList = data.dataList;
         this.name = data.name;
         this.description = data.description;
-        this.isValidated = false;
         }
     addRow(range, domain){
+        if(!this.dataList.has(range)) this._addVertex(range);
+            this._addVertex(domain);
+            this._addEdge(range,domain);
+            return this;
+    }
+    addValidatedRow(range, domain){
         try {
             if(this.dataList.has(range) && this.dataList.get(range).size === 0) throw new Error('This range is domain');
             if(this.dataList.has(domain)) throw new Error('This domain exist');
@@ -18,8 +23,9 @@ export class Dictionary{
         }
     }
     deleteRow(range,domain){
-        this._deleteVertex(domain);
         this._deleteEdge(range,domain)
+        if(!this._getRange(domain) && this.dataList.get(domain).size===0)this._deleteVertex(domain)
+        if(!this._getRange(range) && this.dataList.get(range).size===0)this._deleteVertex(range)
         return this;
     }
 
@@ -46,18 +52,22 @@ export class Dictionary{
     }
 
     _deleteVertex(vertex){
+        /* for (const list of this.dataList.values()) {
+            list.delete(vertex)
+        } */
         this.dataList.delete(vertex)
     }
 
     _deleteEdge(vertex1,vertex2){
         this.dataList.get(vertex1).delete(vertex2);
-        if(this.dataList.get(vertex1).size===0) this._deleteVertex(vertex1)
+        
     }
 
     _getRange(domain){
         for (let [key,value] of this.dataList) {
             if(value.has(domain)) return (key);
             }
+        return false;
     }
 
     getList(){
@@ -76,7 +86,6 @@ export class Dictionary{
         for (let neighbor of neighbors.keys()) {
             dictionaryList.push({range:vertex, domain:neighbor})
             this._getListUtil(neighbor, visited, dictionaryList)
-        
         }
         }
     }
@@ -92,13 +101,14 @@ export class Dictionary{
             isChain:false,
             isCycle:false,
             fork:[],
-            chain:[]
+            chain:[],
+            cycle:[]
         }
         for (let node of this.dataList.keys()) {
         if (this._detectConsistencyUtil(node,tracker,response)) 
             return response;
         }
-        return(!response.isFork && !response.isChain && !response.isCycle)?true:response;
+        return response;
     }
 
     _detectConsistencyUtil(vertex,tracker,response){
@@ -119,14 +129,32 @@ export class Dictionary{
             }
             if(!tracker.visited[currentNode] && this._detectConsistencyUtil(currentNode,tracker,response)){
                 response.isCycle = true;
+                response.cycle.push(currentNode);
                 return true;
             } else if (tracker.recStack[currentNode]){
                 response.isCycle = true;
+                response.cycle.push(currentNode);
                 return true;
             }
         }
         }
         tracker.recStack[vertex] = false;
         return false;
+    }
+
+    getValidatedList(){
+        const newList = this.getList();
+        const response = this.detectConsistency();
+            newList.forEach((row) => {
+                if(response.isCycle && response.cycle.includes(row.range)) return row.marker='cycle';
+                if(response.isChain && (response.chain.includes(row.range) || response.chain.includes(row.domain))) return row.marker='chain';
+                if(response.isFork && response.fork.includes(row.domain)) return row.marker='fork';
+                return row.marker ='ok'
+            })
+        return newList;
+    }
+    isValid(){
+        const response =  this.detectConsistency();
+        return (!response.isFork && !response.isChain && !response.isCycle)
     }
 }

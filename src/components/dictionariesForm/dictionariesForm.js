@@ -8,6 +8,7 @@ function DictionariesForm({addDictionary}) {
     };
     return (
         <div className="dictionary-form">
+            <label for="name">Name:</label>
             <input type="text" 
             name="name" 
             className="dictionary-form-add_text" 
@@ -15,6 +16,7 @@ function DictionariesForm({addDictionary}) {
             onChange={(e) => { 
                 setDictionary({...dictionary, name:e.target.value})    
             }}/>
+            <label for="description">Description:</label>
             <input type="text" 
             name="description" 
             className="dictionary-form-add_text" 

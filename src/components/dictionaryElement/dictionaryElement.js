@@ -9,12 +9,13 @@ function DictionaryElement({row, deleteRow,updateRow}) {
         setEditMode(false);
     };
     return (
-        <div className="dictionaries-element">
-            <div className="dictionaries-element_name">{row.domain}</div>
+        <div className="dictionary-element" style={(row.marker ==='ok')?{'color':'green'}:{'color':'red'}}>
+            <div className="dictionary-element_first">{row.domain}</div>
             {(!editMode)?(
                 <>
-                <div className="dictionaries-element_description">{row.range}</div>
-                <div className="dictionaries-element_btn_validate btn" 
+                <div className="dictionary-element_second">{row.range}</div>
+            {(row.marker !=='ok')?(<div>{row.marker}</div>):null}
+                <div className="dictionary-element_third btn" 
                     onClick={() => {
                     setEditMode(!editMode)
                 }}>Edit</div>
@@ -28,12 +29,12 @@ function DictionaryElement({row, deleteRow,updateRow}) {
             onChange={(e) => { 
                 setRange(e.target.value)    
             }}/>
-            <div className="dictionaries-element_btn_validate btn" 
+            <div className="dictionary-element_third btn" 
                 onClick={handlerUpdateDictionary}>Save</div>
                 </>
             )}
             
-            <div className="dictionaries-element_btn_delete btn" onClick={()=>deleteRow(row)}>X</div>
+            <div className="dictionary-element_btn_delete btn" onClick={()=>deleteRow(row)}>X</div>
         </div>
     )
 }

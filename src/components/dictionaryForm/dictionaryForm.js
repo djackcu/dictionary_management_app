@@ -8,6 +8,7 @@ function DictionariesForm({addRow}) {
     };
     return (
         <div className="dictionary-form">
+            <label for="domain">Domain:</label>
             <input type="text" 
             name="domain" 
             className="dictionary-form-add_text" 
@@ -15,6 +16,7 @@ function DictionariesForm({addRow}) {
             onChange={(e) => { 
                 setRow({...row,domain:e.target.value})    
             }}/>
+            <label for="range">Range:</label>
             <input type="text" 
             name="range" 
             className="dictionary-form-add_text" 

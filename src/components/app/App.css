@@ -40,41 +40,43 @@
 .dictionary-list, nav{
   border:1px solid var(--fourth-dark-color);
 }
-.dictionaries-element{
-  padding-left: 20px;
+.dictionary-element, nav{
   background-color: var(--fourth-light-color);
   color: var(--fourth-dark-color);
   display: flex;
 }
 
-.dictionaries-element_name{
+.dictionary-element_first{
   width: 20%;
+  text-align: center;
 }
-.dictionaries-element_description,.dictionary-form-edit_text{
+.dictionary-element_second,.dictionary-form-edit_text{
   width: 60%;
+  text-align: center;
 }
 
-.dictionaries-element_btn_validate{
+.dictionary-element_third{
   width: 15%;
+  text-align: center;
 }
 
-.dictionaries-element_btn_delete{
+.dictionary-element_btn_delete{
   width: 5%;
 }
-.btn{
+.btn, a{
   text-align: center;
   cursor: pointer;
 }
 
-.dictionaries-element_btn_validate:hover,.dictionaries-element_btn_delete:hover{
+.btn:hover, a:hover{
   background-color: var(--second-light-color);
 }
-.dictionaries-element:nth-child(even){
+.dictionary-element:nth-child(even){
   background-color: var(--third-light-color);
   color: var(--fourth-dark-color);
 }
 
-.dictionaries-element:hover{
+.dictionary-element:hover{
   background-color: var(--fifth-light-color);
   color: var(--first-dark-color);
 }
@@ -91,4 +93,7 @@
 .dictionary-form-add_text, .dictionary-form-edit_text{
   font-size: calc(10px + 2vmin);
   color: var(--first-dark-color);
+}
+a {
+  text-decoration: none;
 }
