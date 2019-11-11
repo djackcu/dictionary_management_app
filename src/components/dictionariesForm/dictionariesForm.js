@@ -8,7 +8,7 @@ function DictionariesForm({addDictionary}) {
     };
     return (
         <div className="dictionary-form">
-            <label for="name">Name:</label>
+            <label>Name:
             <input type="text" 
             name="name" 
             className="dictionary-form-add_text" 
@@ -16,7 +16,8 @@ function DictionariesForm({addDictionary}) {
             onChange={(e) => { 
                 setDictionary({...dictionary, name:e.target.value})    
             }}/>
-            <label for="description">Description:</label>
+            </label>
+            <label>Description:
             <input type="text" 
             name="description" 
             className="dictionary-form-add_text" 
@@ -24,6 +25,7 @@ function DictionariesForm({addDictionary}) {
             onChange={(e) => { 
                 setDictionary({...dictionary,description:e.target.value})    
             }}/>
+            </label>
             <button className="dictionary-form-add_button" onClick={handlerAddDictionary}>Add</button>
         </div>
     )
