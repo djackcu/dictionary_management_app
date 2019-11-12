@@ -16,11 +16,13 @@ const useDictionary = (initialDictionary) => {
             dictionaryApi.setRow(dictionary.name,row.domain,row.range);
         })
     return () => {
-        localStorage.clear();
+        
         };
     },[dictionary]);
     const addRow = (row) =>dispatch({ type: types.ADD_ROW, dictionary:dictionary, range:row.range, domain:row.domain });
-    const deleteRow = (row) => dispatch({ type: types.DELETE_ROW, dictionary:dictionary, range:row.range, domain:row.domain });
+    const deleteRow = (row) => {
+        dictionaryApi.deleteRow(dictionary.name,row.domain,row.range);
+        return dispatch({ type: types.DELETE_ROW, dictionary:dictionary, range:row.range, domain:row.domain })};
     const updateRow = (row) => dispatch({ type: types.UPDATE_ROW, dictionary:dictionary, range:row.range, domain:row.domain });
     
 

@@ -9,7 +9,7 @@ const useDictionaries = () => {
     useEffect(() => {
     dictionaryApi.setDictionary(dictionaries);
     return () => {
-        //localStorage.clear();
+        
         };
     },[dictionaries]);
     const addDictionary = (dictionary) => dispatch({ type: types.ADD_DICTIONARY, dictionary });

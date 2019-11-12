@@ -4,6 +4,7 @@ export class Dictionary{
         this.name = data.name;
         this.description = data.description;
         }
+    
     addRow(range, domain){
         if(!this.dataList.has(range)) this._addVertex(range);
             this._addVertex(domain);
@@ -32,12 +33,7 @@ export class Dictionary{
     updateRow(range,domain){
         const oldRange = this._getRange(domain)
         this.deleteRow(oldRange,domain)
-        try {
-            this.addRow(range,domain)
-        } catch (error) {
-            this.addRow(oldRange,domain)
-        }
-        
+        this.addRow(range,domain)
         return this;
     }
 
